@@ -36,14 +36,14 @@
       margin-bottom: 5px;
     }
     h2 {
-      margin: 20px 0 15px; /* Adjusted to match new spacer size */
+      margin: 20px 0 15px;
       font-size: 2rem;
       color: #fff;
       font-weight: bold;
       text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
     }
     h3 {
-      margin: 20px 0 15px; /* Adjusted to match new spacer size */
+      margin: 20px 0 15px;
       font-size: 1.5rem;
       color: #fff;
       font-weight: bold;
@@ -90,7 +90,7 @@
       margin-right: 8px;
     }
     .section-spacer {
-      margin-top: 20px; /* Changed from 40px to 20px */
+      margin-top: 20px;
     }
     .button-row {
       display: flex;
@@ -98,6 +98,32 @@
       flex-wrap: wrap;
       max-width: 420px;
       margin: 0 auto;
+    }
+    .icon-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 15px 0 10px; /* Changed bottom margin from 30px to 10px */
+    }
+    .icon-row:last-child {
+      margin-bottom: 30px; /* Added specific bottom margin for last row */
+    }
+    .icon-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #1a1a1a;
+      transition: background 0.3s ease;
+    }
+    .icon-link:hover {
+      background-color: #333;
+    }
+    .icon-link img {
+      width: 30px;
+      height: 30px;
     }
   </style>
 </head>
@@ -128,14 +154,14 @@
     Xbox
   </a>
 
-  <div class="section-spacer"></div> <!-- Added spacer div -->
+  <div class="section-spacer"></div>
   <h2>Flame Ranked Bedwars</h2>
   <a class="link-btn" href="https://discord.gg/U8N4pMpZbk" target="_blank">
     <img class="icon" src="images/flame.png" alt="Flame icon">
     Join Flame RBW Discord
   </a>
 
-<div class="section-spacer"></div>
+  <div class="section-spacer"></div>
   <h3>Other platforms</h3>
   <div class="icon-row">
     <a href="https://github.com/splu4ug" target="_blank" class="icon-link">
@@ -166,32 +192,5 @@
     </a>
   </div>
 
-  <style>
-    .icon-row {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 15px 0 30px;
-    }
-    .icon-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #1a1a1a;
-      transition: background 0.3s ease;
-    }
-    .icon-link:hover {
-      background-color: #333;
-    }
-    .icon-link img {
-      width: 30px;
-      height: 30px;
-    }
-  </style>
-
 </body>
 </html>
-
