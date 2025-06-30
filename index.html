@@ -36,11 +36,18 @@
       margin-bottom: 5px;
     }
     h2 {
-      margin: 40px 0 15px; /* Increased top margin for more space */
-      font-size: 2rem; /* Larger font size */
-      color: #fff; /* Pure white */
-      font-weight: bold; /* Bold text */
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Subtle glow */
+      margin: 20px 0 15px; /* Adjusted to match new spacer size */
+      font-size: 2rem;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+    h3 {
+      margin: 20px 0 15px; /* Adjusted to match new spacer size */
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
     }
     p.bio {
       font-size: 16px;
@@ -63,16 +70,34 @@
       transition: background 0.3s ease;
       font-size: 18px;
     }
-    .link-btn:hover {
+    .small-btn {
+      width: 180px;
+      padding: 12px 16px;
+      font-size: 16px;
+      margin: 8px;
+    }
+    .link-btn:hover, .small-btn:hover {
       background-color: #333;
     }
-    .link-btn img.icon {
+    .link-btn img.icon, .small-btn img.icon {
       width: 24px;
       height: 24px;
       margin-right: 12px;
     }
+    .small-btn img.icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
     .section-spacer {
-      margin-top: 40px; /* Additional spacing before the Flame section */
+      margin-top: 20px; /* Changed from 40px to 20px */
+    }
+    .button-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 420px;
+      margin: 0 auto;
     }
   </style>
 </head>
