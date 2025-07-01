@@ -103,10 +103,10 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      margin: 15px 0 10px;
+      margin: 15px 0 10px; /* Changed bottom margin from 30px to 10px */
     }
     .icon-row:last-child {
-      margin-bottom: 30px;
+      margin-bottom: 30px; /* Added specific bottom margin for last row */
     }
     .icon-link {
       display: flex;
@@ -125,52 +125,6 @@
       width: 30px;
       height: 30px;
     }
-
-    /* NEW: Discord Profile Embed Styles */
-    .discord-profile {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      margin: 15px 0;
-      padding: 15px;
-      background: #1a1a1a;
-      border-radius: 10px;
-      width: 400px;
-      max-width: 90%;
-    }
-    .discord-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #5865F2;
-    }
-    .discord-info {
-      text-align: left;
-    }
-    .discord-username {
-      font-weight: bold;
-      margin: 0;
-      font-size: 18px;
-    }
-    .discord-status {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 5px;
-      font-size: 14px;
-      color: #aaa;
-    }
-    .status-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .status-online { background: #3ba55c; }
-    .status-idle { background: #faa61a; }
-    .status-dnd { background: #ed4245; }
-    .status-offline { background: #747f8d; }
   </style>
 </head>
 <body>
@@ -179,18 +133,6 @@
 
   <h1>splu4ug</h1>
   <p class="bio">ᓚᘏᗢ</p>
-
-  <!-- NEW: Discord Profile Embed -->
-  <div id="discord-profile" class="discord-profile">
-    <img id="discord-avatar" class="discord-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Discord Avatar">
-    <div class="discord-info">
-      <p id="discord-username" class="discord-username">Loading...</p>
-      <div id="discord-status" class="discord-status">
-        <div id="status-dot" class="status-dot status-offline"></div>
-        <span id="status-text">Offline</span>
-      </div>
-    </div>
-  </div>
 
   <a class="link-btn" href="https://youtube.com/@splu4ug" target="_blank">
     <img class="icon" src="images/youtube.png" alt="YouTube icon">
@@ -250,47 +192,5 @@
     </a>
   </div>
 
-  <!-- NEW: Lanyard Script for Discord Profile -->
-  <script src="https://unpkg.com/lanyard@latest/dist/umd.js"></script>
-  <script>
-    Lanyard({
-      userId: "841739518373789717", // Your Discord User ID
-      socket: true,
-      onData: (data) => {
-        // Update Avatar
-        const avatarUrl = data.discord_user.avatar 
-          ? `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.png?size=256`
-          : `https://cdn.discordapp.com/embed/avatars/${data.discord_user.discriminator % 5}.png`;
-        document.getElementById("discord-avatar").src = avatarUrl;
-
-        // Update Username
-        document.getElementById("discord-username").textContent = 
-          `${data.discord_user.username}#${data.discord_user.discriminator}`;
-
-        // Update Status
-        const statusDot = document.getElementById("status-dot");
-        const statusText = document.getElementById("status-text");
-        
-        statusDot.className = "status-dot"; // Reset class
-        switch(data.discord_status) {
-          case "online":
-            statusDot.classList.add("status-online");
-            statusText.textContent = "Online";
-            break;
-          case "idle":
-            statusDot.classList.add("status-idle");
-            statusText.textContent = "Idle";
-            break;
-          case "dnd":
-            statusDot.classList.add("status-dnd");
-            statusText.textContent = "Do Not Disturb";
-            break;
-          default:
-            statusDot.classList.add("status-offline");
-            statusText.textContent = "Offline";
-        }
-      }
-    });
-  </script>
 </body>
 </html>
