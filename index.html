@@ -182,7 +182,7 @@
     }
     
     /* Modal Styles */
-    #supercell-modal {
+    #supercell-modal, #psn-modal {
       position: fixed;
       top: 0;
       left: 0;
@@ -198,7 +198,7 @@
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
     
-    #supercell-modal.active {
+    #supercell-modal.active, #psn-modal.active {
       opacity: 1;
       visibility: visible;
     }
@@ -215,7 +215,7 @@
       transition: transform 0.3s ease;
     }
     
-    #supercell-modal.active .modal-content {
+    #supercell-modal.active .modal-content, #psn-modal.active .modal-content {
       transform: translateY(0);
     }
     
@@ -295,6 +295,32 @@
       color: #ccc;
     }
     
+    /* PSN specific styles */
+    .psn-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background-color: #2a2a2a;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .psn-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+      object-fit: contain;
+    }
+    
+    .psn-username {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+    }
+    
     /* Mobile-specific styles */
     @media (max-width: 768px) {
       h1 {
@@ -322,6 +348,11 @@
       .game-link img {
         width: 45px;
         height: 45px;
+      }
+      
+      .psn-logo {
+        width: 70px;
+        height: 70px;
       }
     }
     
@@ -368,6 +399,15 @@
       
       .game-username {
         font-size: 0.8rem;
+      }
+      
+      .psn-logo {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .psn-username {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -419,6 +459,9 @@
       <a href="https://pinterest.com/splu4ug" target="_blank" class="icon-link">
         <img src="images/pinterest.png" alt="Pinterest icon">
       </a>
+      <div class="icon-link" id="psn-button">
+        <img src="images/playstation.png" alt="PlayStation Network">
+      </div>
       <a href="https://www.reddit.com/user/splu4ug/" target="_blank" class="icon-link">
         <img src="images/redit.png" alt="Redit icon">
       </a>
@@ -453,7 +496,7 @@
   <!-- Supercell Modal -->
   <div id="supercell-modal">
     <div class="modal-content">
-      <button class="close-button">&times;</button>
+      <button class="close-button" data-modal="supercell">&times;</button>
       <h2 class="modal-title">Supercell</h2>
       <div class="username-display">@splu4ug</div>
       <a href="https://link.clashofclans.com/en?action=OpenPlayerProfile&tag=G2VGQ22LR" target="_blank" class="game-link">
@@ -480,11 +523,24 @@
     </div>
   </div>
 
+  <!-- PlayStation Network Modal -->
+  <div id="psn-modal">
+    <div class="modal-content">
+      <button class="close-button" data-modal="psn">&times;</button>
+      <h2 class="modal-title">PlayStation</h2>
+      <div class="psn-info">
+        <div class="psn-username">@splu4ug</div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Get DOM elements
     const supercellButton = document.getElementById('supercell-button');
     const supercellModal = document.getElementById('supercell-modal');
-    const closeButton = document.querySelector('.close-button');
+    const psnButton = document.getElementById('psn-button');
+    const psnModal = document.getElementById('psn-modal');
+    const closeButtons = document.querySelectorAll('.close-button');
     
     // Open modal when Supercell button is clicked
     supercellButton.addEventListener('click', function() {
@@ -492,25 +548,41 @@
       document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
     });
     
-    // Close modal when close button is clicked
-    closeButton.addEventListener('click', function() {
-      supercellModal.classList.remove('active');
-      document.body.style.overflow = ''; // Re-enable scrolling
+    // Open modal when PSN button is clicked
+    psnButton.addEventListener('click', function() {
+      psnModal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
     });
     
-    // Close modal when clicking outside the modal content
-    supercellModal.addEventListener('click', function(event) {
-      if (event.target === supercellModal) {
-        supercellModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+    // Close modals when close button is clicked
+    closeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        document.getElementById(`${modalId}-modal`).classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
     });
     
-    // Close modal with Escape key
+    // Close modals when clicking outside the modal content
+    const modals = document.querySelectorAll('#supercell-modal, #psn-modal');
+    modals.forEach(modal => {
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    
+    // Close modals with Escape key
     document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape' && supercellModal.classList.contains('active')) {
-        supercellModal.classList.remove('active');
-        document.body.style.overflow = '';
+      if (event.key === 'Escape') {
+        modals.forEach(modal => {
+          if (modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
       }
     });
   </script>
