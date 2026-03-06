@@ -1,13 +1,3 @@
 include:
   - .well-known
-```
-
----
-
-**File 2** — Create `.well-known/atproto-did` (no file extension):
-```
 did:plc:mugkranhqg2qomtqwozfcr5i
-```
-Replace `did:plc:mugkranhqg2qomtqwozfcr5i` with your real DID from visiting:
-```
-https://bsky.social/xrpc/com.atproto.identity.resolveHandle?handle=splu4ug.com
